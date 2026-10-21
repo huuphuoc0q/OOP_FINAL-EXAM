@@ -66,9 +66,9 @@ int main() {
     SetConsoleCP(CP_UTF8);
 #endif
     NhanVat nv("Hac Si", 160);
-    nv.themVuKhi(make_unique<Sung>("Eclipse",24,2.0,6,2.0));
-    nv.themVuKhi(make_unique<Kiem>("Phan Quang",18,1.0,100));
-    nv.themVuKhi(make_unique<PhepThuat>("Loi Quang",32,1.0,"Loi",5));
+    nv.themVuKhi(make_unique<Sung>("Eclipse",30,1.0,5,2.0));
+    nv.themVuKhi(make_unique<Kiem>("Phan Quang",20,1.0,100));
+    nv.themVuKhi(make_unique<PhepThuat>("Loi Quang",25,1.0,"Loi",30));//sat thuong 25, mana 30
     int bossHP=160,bossMax=160,diem=0,luot=1,chon=0;
     bool ketThuc=false;
     string dongNhatKy="Chao mung den dau truong!";
@@ -84,7 +84,7 @@ int main() {
                 <<" | "<<setw(12)<<v->getLoai()
                 <<" | sat thuong "<<setw(2)<<v->getSatThuongCoBan()
                 <<" | toc do "<<v->getTocDoRaDon()<<" don/giay";
-            if(auto* s=dynamic_cast<Sung*>(v))cout<<" | dan "<<s->getDanTrongOng()<<"/6";
+            if(auto* s=dynamic_cast<Sung*>(v))cout<<" | dan "<<s->getSoDan()<<"/5";
             if(auto* p=dynamic_cast<PhepThuat*>(v))cout<<" | mana "<<p->getManaHienTai()<<"/30";
             if(auto* k=dynamic_cast<Kiem*>(v))cout<<" | do ben "<<k->getDoBen()<<"/100";
             cout<<"\n";
@@ -123,16 +123,38 @@ int main() {
             if(ketThuc){dongNhatKy="Tran dau da ket thuc. Hay choi lai.";continue;}
             VuKhi* v=nv.getVuKhi(chon);int satThuong=0;bool hopLe=true;
             if(auto*s=dynamic_cast<Sung*>(v)){if(!s->ConDan()){dongNhatKy="Het dan! Hay chon Nap dan.";hopLe=false;}else{s->TanCong();satThuong=s->SatThuong(1);s->SuDungDan();}}
-            else if(auto*k=dynamic_cast<Kiem*>(v)){if(k->getDoBen()<=0){dongNhatKy="Kiem da hong.";hopLe=false;}else{k->TanCong();satThuong=k->SatThuong(1);k->setDoBen(k->getDoBen()-1);}}
-            else if(auto*p=dynamic_cast<PhepThuat*>(v)){if(!p->DuMana(1)){dongNhatKy="Khong du mana! Hay hoi mana.";hopLe=false;}else{p->TanCong();satThuong=p->SatThuong(1);p->SuDungMana(1);}}
+            else if(auto*k=dynamic_cast<Kiem*>(v)){if(k->getDoBen()<20){dongNhatKy="Kiem khong du do ben de tan cong.";hopLe=false;}else{k->TanCong();satThuong=k->SatThuong(1);k->setDoBen(k->getDoBen()-20);}}
+            else if(auto*p=dynamic_cast<PhepThuat*>(v)){
+                if(!p->DuMana(8)){
+                    dongNhatKy="Khong du mana de su dung phep.";
+                    hopLe=false;
+                }else{
+                    p->TanCong();
+                    satThuong=p->SatThuong(1);
+                    p->SuDungMana(8);
+                }
+            }
             if(hopLe) {
                 bossHP=max(0,bossHP-satThuong);diem+=satThuong;
                 dongNhatKy=nv.getTen()+" dung "+v->getTen()+", gay "+to_string(satThuong)+" sat thuong.";
                 if(bossHP==0){ketThuc=true;dongNhatKy="Chien thang! Boss da bi ha guc.";}
                 else {
-                    int phanCong=8+(luot%5);nv.nhanSatThuong(phanCong);
-                    dongNhatKy+=" Boss phan cong "+to_string(phanCong)+" sat thuong.";
-                    if(nv.getMau()==0){ketThuc=true;dongNhatKy="That bai! Nhan vat da het mau.";}
+                    int phanCong=0;
+                    if(dynamic_cast<Sung*>(v)!=nullptr){
+                        phanCong=35;
+                    }
+                    else if (dynamic_cast<Kiem*>(v)!=nullptr){
+                        phanCong=15;
+                    }
+                    else if(dynamic_cast<PhepThuat*>(v)!=nullptr){
+                        phanCong=20;
+                    }
+                    nv.nhanSatThuong(phanCong);
+                    dongNhatKy+="Boss phan cong "+to_string(phanCong)+" sat thuong.";
+                    if(nv.getMau()==0){
+                        ketThuc=true;
+                        dongNhatKy="That bai! Nhan vat da het mau.";
+                    }
                 }
                 ++luot;
             }
