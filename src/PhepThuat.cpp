@@ -4,20 +4,26 @@
 PhepThuat::PhepThuat(): 
     VuKhi("Phep mac dinh",25,1.0),
     loaiPhep("Loi"),
-    manaTieuThuMoiGiay(5),
+    manaTieuThu(5),
     manaHienTai(30) {}
-PhepThuat::PhepThuat(const std::string&t,int s,double td,const std::string&l,int m):
-    VuKhi(t,s,td),
+PhepThuat::PhepThuat(
+    const std::string& t,
+    int s,
+    double td,
+    const std::string& l,
+    int m
+):
+    VuKhi(t, s, td),
     loaiPhep(l),
-    manaTieuThuMoiGiay(m),
-    manaHienTai(30) {}
+    manaTieuThu(8),
+    manaHienTai(m){}
 
 std::string PhepThuat::getLoaiPhep() const {
     return loaiPhep;
 }
 
-int PhepThuat::getManaTieuThuMoiGiay() const {
-    return manaTieuThuMoiGiay;
+int PhepThuat::getManaTieuThu() const {
+    return manaTieuThu;
 }
 
 int PhepThuat::getManaHienTai() const {
@@ -29,9 +35,9 @@ void PhepThuat::setLoaiPhep(const std::string&l) {
         loaiPhep=l;
 }
 
-void PhepThuat::setManaTieuThuMoiGiay(int m) {
+void PhepThuat::setManaTieuThu(int m) {
     if(m>=0)
-        manaTieuThuMoiGiay=m;
+        manaTieuThu=m;
 }
 
 void PhepThuat::TanCong() {
@@ -39,7 +45,7 @@ void PhepThuat::TanCong() {
 }
 
 int PhepThuat::SatThuong(int t) const { 
-    if(t<0 || manaHienTai < manaTieuThuMoiGiay*t )
+    if(t<0 || manaHienTai < manaTieuThu*t )
         return 0;
     return static_cast<int>(t*tocDo_)*satThuong_;
 }
@@ -48,13 +54,14 @@ std::string PhepThuat::getLoai() const {
     return "Phep thuat";
 }
 
-bool PhepThuat::DuMana(int t) const {
-    return t>=0 && manaHienTai >= manaTieuThuMoiGiay*t;
+bool PhepThuat::DuMana(int manaTieuThu) const {
+    return manaHienTai >= manaTieuThu;
 }
 
 void PhepThuat::SuDungMana(int t) {
-    if(DuMana(t))
-        manaHienTai-=manaTieuThuMoiGiay*t;
+    if(t>0 && manaHienTai>=t){
+        manaHienTai-=t;
+    }
 }
 
 void PhepThuat::HoiMana() {
@@ -63,7 +70,7 @@ void PhepThuat::HoiMana() {
 
 void PhepThuat::xuat(std::ostream&os) const {
     VuKhi::xuat(os);
-    os<<"Loai phep: "<<loaiPhep<<"\nMana tieu thu/giay: "<<manaTieuThuMoiGiay<<"\nMana hien tai: "<<manaHienTai<<"/30\n";
+    os<<"Loai phep: "<<loaiPhep<<"\nMana tieu thu/giay: "<<manaTieuThu<<"\nMana hien tai: "<<manaHienTai<<"/30\n";
 }
 
 void PhepThuat::nhap(std::istream&is) {
@@ -73,7 +80,8 @@ void PhepThuat::nhap(std::istream&is) {
     std::cout<<"Loai phep: "; is>>l;
     std::cout<<"Mana tieu thu moi giay: "; is>>m;
     if(is&&!l.empty()&&m>=0) {
-        loaiPhep=l;manaTieuThuMoiGiay=m;
+        loaiPhep=l;
+        manaTieuThu=m;
     }
 }
 
