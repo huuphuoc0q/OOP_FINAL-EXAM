@@ -4,7 +4,7 @@
 class PhepThuat : public VuKhi {
     private:
         std::string loaiPhep;
-        int manaTieuThuMoiGiay;
+        int manaTieuThu;
         int manaHienTai;
     public:
         //Constructor
@@ -13,16 +13,16 @@ class PhepThuat : public VuKhi {
 
         //Getter, setter
         std::string getLoaiPhep() const;
-        int getManaTieuThuMoiGiay() const;
+        int getManaTieuThu() const;
         int getManaHienTai() const;
         void setLoaiPhep(const std::string& loai);
-        void setManaTieuThuMoiGiay(int mana);
+        void setManaTieuThu(int mana);
 
         //Ham xu ly
         void TanCong() override;
         int SatThuong(int t) const override;
         std::string getLoai() const override;
-        bool DuMana(int t) const;
+        bool DuMana(int manaTieuThu) const;
         void SuDungMana(int t);
         void HoiMana();
 
