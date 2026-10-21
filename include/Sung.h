@@ -3,17 +3,17 @@
 #include "VuKhi.h"
 class Sung : public VuKhi {
     private:
-        int danTrongOng;
-        double tocDoThayBang; // giay
+        int soDan;
+        double tocdoThayBang; // giay
     public:
         //Constructor
         Sung();
         Sung(const std::string& ten, int satThuong, double tocDo, int dan, double thayBang);
 
         //Getter, setter
-        int getDanTrongOng() const;
+        int getSoDan() const;
         double getTocDoThayBang() const;
-        void setDanTrongOng(int dan);
+        void setSoDan(int dan);
         void setTocDoThayBang(double giay);
 
         //Xu ly
