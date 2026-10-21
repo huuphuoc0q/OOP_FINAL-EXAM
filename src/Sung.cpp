@@ -3,31 +3,31 @@
 #include <limits>
 
 Sung::Sung() : 
-    VuKhi("Sung mac dinh",20,2.0), 
-    danTrongOng(6), 
-    tocDoThayBang(2.0) {}
+    VuKhi("Sung mac dinh",30,1.0), 
+    soDan(5), 
+    tocdoThayBang(2.0) {}
 
 Sung::Sung(const std::string& t,int s,double td,int d,double tb): 
     VuKhi(t,s,td),
-    danTrongOng(d),
-    tocDoThayBang(tb) {}
+    soDan(d),
+    tocdoThayBang(tb) {}
 
-int Sung::getDanTrongOng() const {
-    return danTrongOng;
+int Sung::getSoDan() const {
+    return soDan;
 }
 
 double Sung::getTocDoThayBang() const {
-    return tocDoThayBang;
+    return tocdoThayBang;
 }
 
-void Sung::setDanTrongOng(int d) {
+void Sung::setSoDan(int d) {
     if(d>=0)
-        danTrongOng=d;
+        soDan=d;
 }
 
 void Sung::setTocDoThayBang(double g) {
     if(g>0)
-        tocDoThayBang=g;
+        tocdoThayBang=g;
 }
 
 void Sung::TanCong() {
@@ -35,10 +35,10 @@ void Sung::TanCong() {
 }
 
 int Sung::SatThuong(int t) const {
-    if(t<0||danTrongOng<=0)
+    if(t<0||soDan<=0)
         return 0; 
     int soPhat=static_cast<int>(t*tocDo_); 
-    if(soPhat>danTrongOng) soPhat=danTrongOng;
+    if(soPhat>soDan) soPhat=soDan;
     return soPhat*satThuong_;
 }
 
@@ -47,19 +47,19 @@ std::string Sung::getLoai() const {
 }
 
 void Sung::NapDan() {
-    danTrongOng=6;
+    soDan=5;
 }
 
 bool Sung::ConDan() const {
-    return danTrongOng>0;
+    return soDan>0;
 }
 
 void Sung::SuDungDan() {
-    if(danTrongOng>0)--danTrongOng;
+    if(soDan>0)--soDan;
 }
 
 void Sung::xuat(std::ostream& os) const {
-    VuKhi::xuat(os);os<<"Loai: Sung\nDan trong ong: "<<danTrongOng<<"\nThoi gian thay bang: "<<tocDoThayBang<<" giay\n";
+    VuKhi::xuat(os);os<<"Loai: Sung\nDan trong ong: "<<soDan<<"\nThoi gian thay bang: "<<tocdoThayBang<<" giay\n";
 }
 
 void Sung::nhap(std::istream& is) {
@@ -69,8 +69,8 @@ void Sung::nhap(std::istream& is) {
     std::cout<<"So dan trong ong: "; is>>d;
     std::cout<<"Thoi gian thay bang: "; is>>tb;
     if(is&&d>=0&&tb>0) {
-        danTrongOng=d;
-        tocDoThayBang=tb;
+        soDan=d;
+        tocdoThayBang=tb;
     }
 }
 
