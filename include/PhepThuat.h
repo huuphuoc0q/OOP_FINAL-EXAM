@@ -3,27 +3,27 @@
 #include "VuKhi.h"
 class PhepThuat : public VuKhi {
     private:
-        std::string loaiPhep;
-        int manaTieuThu;
-        int manaHienTai;
+        std::string loaiPhep_;
+        int manaTieuThu_;
+        int manaHienTai_;
     public:
         //Constructor
         PhepThuat();
-        PhepThuat(const std::string& ten,int satThuong,double tocDo,const std::string& loai,int mana);
+        PhepThuat(const std::string& tenVuKhi, int satThuong, double tocDo, const std::string& loaiPhep, int manaHienTai);
 
         //Getter, setter
         std::string getLoaiPhep() const;
         int getManaTieuThu() const;
         int getManaHienTai() const;
-        void setLoaiPhep(const std::string& loai);
-        void setManaTieuThu(int mana);
+        void setLoaiPhep(const std::string& newLoaiPhep);
+        void setManaTieuThu(int newManaTieuThu);
 
         //Ham xu ly
-        void TanCong() override;
-        int SatThuong(int t) const override;
+        void tanCong() override;
+        int satThuong(int t) const override;
         std::string getLoai() const override;
         bool DuMana(int manaTieuThu) const;
-        void SuDungMana(int t);
+        void SuDungMana(int manaSuDung);
         void HoiMana();
 
         //Qua tai nhap xuat

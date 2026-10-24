@@ -3,22 +3,22 @@
 #include "VuKhi.h"
 class Sung : public VuKhi {
     private:
-        int soDan;
-        double tocdoThayBang; // giay
+        int soDan_;
+        double tocDoThayBang_; // giay
     public:
         //Constructor
         Sung();
-        Sung(const std::string& ten, int satThuong, double tocDo, int dan, double thayBang);
+        Sung(const std::string& tenVuKhi, int satThuong, double tocDo, int soDan, double tocDoThayBang);
 
         //Getter, setter
         int getSoDan() const;
         double getTocDoThayBang() const;
-        void setSoDan(int dan);
-        void setTocDoThayBang(double giay);
+        void setSoDan(int newSoDan);
+        void setTocDoThayBang(double newTocDoThayBang);
 
         //Xu ly
-        void TanCong() override;
-        int SatThuong(int t) const override;
+        void tanCong() override;
+        int satThuong(int t) const override;
         std::string getLoai() const override;
         void NapDan();
         bool ConDan() const;

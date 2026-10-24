@@ -23,13 +23,13 @@ int NhanVat::getMauToiDa() const {
     return mauToiDa_;
 }
 
-void NhanVat::setTen(const std::string& newtenNhanVat) {
-    if(!newtenNhanVat.empty())
-        tenNhanVat_ = newtenNhanVat;
+void NhanVat::setTen(const std::string& newTenNhanVat) {
+    if(!newTenNhanVat.empty())
+        tenNhanVat_ = newTenNhanVat;
 }
 
-void NhanVat::setMau(int newMau_) {
-    mau_ = std::clamp(newMau_ ,0 ,mauToiDa_);
+void NhanVat::setMau(int newMau) {
+    mau_ = std::clamp(newMau ,0 ,mauToiDa_);
 }
 
 void NhanVat::themVuKhi(std::unique_ptr<VuKhi>  vuKhi) {

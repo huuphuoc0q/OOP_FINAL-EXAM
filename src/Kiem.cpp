@@ -2,41 +2,46 @@
 #include <iostream>
 
 Kiem::Kiem():
-    VuKhi("Kiem mac dinh",18,1.0),
-    doBen(100) {}
-Kiem::Kiem(const std::string&t,int s,double td,int b):
-    VuKhi(t,s,td),
-    doBen(b) {}
+    VuKhi("Kiem mac dinh", 18, 1.0),
+    doBen_(100) {}
+
+Kiem::Kiem(const std::string& tenVuKhi, int satThuong, double tocDo, int doBen):
+    VuKhi(tenVuKhi, satThuong, tocDo),
+    doBen_(doBen) {}
 
 int Kiem::getDoBen() const {
-    return doBen;
+    return doBen_;
 }
 
-void Kiem::setDoBen(int b) {
-    if(b>=0) 
-        doBen=b;
+void Kiem::setDoBen(int newDoBen) {
+    if( newDoBen >= 0) 
+        doBen_ = newDoBen;
 }
 
-void Kiem::TanCong() {
+void Kiem::tanCong() {
     std::cout<<" * XEO! Kiem "<<tenVuKhi_<<" chem mot nhat.\n";
 }
-int Kiem::SatThuong(int t) const {
-    if(t<0||doBen<=0)
+
+int Kiem::satThuong(int t) const {
+    if( t<0 || doBen_ <= 0)
         return 0;
-    int soNhat=static_cast<int>(t*tocDo_);
+    int soNhat = static_cast<int>(t*tocDo_);
     return soNhat*satThuong_;
 }
+
 std::string Kiem::getLoai() const {
     return "Kiem";
 }
 
 void Kiem::xuat(std::ostream&os) const {
-    VuKhi::xuat(os);os<<"Loai: Kiem\nDo ben: "<<doBen<<"/100\n";
+    VuKhi::xuat(os);
+    os<<"Loai: Kiem\nDo ben: "<<doBen_<<"/100\n";
 }
+
 void Kiem::nhap(std::istream&is) {
     VuKhi::nhap(is);
-    int b;
-    std::cout<<"Do ben: "; is>>b; 
-    if(is&&b>=0) 
-        doBen=b;
+    int newDoBen;
+    std::cout<<"Do ben: "; is>>newDoBen; 
+    if(is && newDoBen>=0) 
+        doBen_ = newDoBen;
 }

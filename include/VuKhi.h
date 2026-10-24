@@ -10,18 +10,18 @@ class VuKhi {
         double tocDo_; // don/giay
     public:
         VuKhi();
-        VuKhi(const std::string& ten, int satThuong, double tocDo);
+        VuKhi(const std::string& tenVuKhi, int satThuong, double tocDo);
         virtual ~VuKhi() = default;
 
         std::string getTen() const;
         int getSatThuongCoBan() const;
         double getTocDoRaDon() const;
-        void setTen(const std::string& ten);
+        void setTen(const std::string& newTenVuKhi);
         void setSatThuongCoBan(int satThuong);
         void setTocDoRaDon(double tocDo);
 
-        virtual void TanCong() = 0;
-        virtual int SatThuong(int t) const = 0;
+        virtual void tanCong() = 0;
+        virtual int satThuong(int t) const = 0;
         virtual std::string getLoai() const = 0;
 
         virtual void xuat(std::ostream& os) const;

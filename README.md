@@ -1,6 +1,6 @@
 # Đồ án OOP: Sát thương nhân vật — Console 2D
 
-## Đối chiếu yêu cầu giảng viên
+## YÊU CẦU
 - 3 điểm báo cáo Word: dự án có cấu trúc lớp, mô tả quy luật, phân công, giải thích code và hướng dẫn demo; nhóm cần hoàn thiện thông tin thành viên và ảnh minh chứng.
 - 2 điểm thiết kế lớp cơ bản: lớp `VuKhi` có constructor mặc định/có tham số, getter/setter và nạp xuất `>>`, `<<`. Các lớp dẫn xuất cũng có constructor, getter/setter và ghi đè nhập xuất.
 - 1 điểm kế thừa: `Sung`, `Kiem`, `PhepThuat` kế thừa `VuKhi`.
@@ -29,8 +29,8 @@ g++ -std=c++17 -Iinclude src/*.cpp -o SatThuongNhanVat
 
 ## Quy luật chiến đấu
 - Nhân vật có 160 HP, Boss có 160 HP.
-- Mỗi lượt đánh, vũ khí gây sát thương theo `SatThuong(1)`; Boss còn sống sẽ phản công 8–12 HP.
-- Súng dùng một viên đạn/lượt; kiếm giảm độ bền 1 mỗi lần đánh; phép thuật tiêu hao mana theo số giây tấn công.
+- Mỗi lượt đánh, vũ khí gây sát thương theo `SatThuong(1)`; Boss còn sống sẽ phản công 35HP khi dùng súng, 15 khi dùng kiếm, 20 khi dùng phép.
+- Súng dùng một viên đạn/lượt; kiếm giảm độ bền 20 mỗi lần đánh; phép thuật tiêu hao mana theo số giây tấn công.
 - Chơi lại phục hồi HP, đạn, mana và độ bền.
 - Đây là mô phỏng theo lượt trong Console; `t` trong `SatThuong(int t)` được hiểu là số giây sử dụng vũ khí.
 

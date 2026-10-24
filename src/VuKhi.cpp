@@ -22,9 +22,9 @@ double VuKhi::getTocDoRaDon() const {
     return tocDo_; 
 }
 
-void VuKhi::setTen(const std::string& tenVuKhi){
-    if (!tenVuKhi.empty()) 
-        tenVuKhi_ = tenVuKhi;  
+void VuKhi::setTen(const std::string& newTenVuKhi){
+    if (!newTenVuKhi.empty()) 
+        tenVuKhi_ = newTenVuKhi;  
 }
 
 void VuKhi::setSatThuongCoBan(int satThuong) {

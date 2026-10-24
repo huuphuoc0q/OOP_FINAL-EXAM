@@ -21,12 +21,12 @@ class NhanVat {
         std::string getTen() const;
         int getMau() const;
         int getMauToiDa() const;
-        void setTen(const std::string& tenNhanVat);
-        void setMau(int mau);
+        void setTen(const std::string& newTenNhanVat);
+        void setMau(int newMau);
+        VuKhi* getVuKhi(int index);
 
         //Ham xu ly
         void themVuKhi(std::unique_ptr<VuKhi> vuKhi);
-        VuKhi* getVuKhi(int index);
         int soVuKhi() const;
         void nhanSatThuong(int satThuong);
         void hoiMau();
