@@ -48,7 +48,7 @@ void khungDauTruong(const NhanVat &nv, int bossHP, int bossMax)
     cout << "+--------------------------------------------------------------+\n";
     cout << "|                       DAU TRUONG 2D                          |\n";
     cout << "+--------------------------------------------------------------+\n";
-    cout << "|       NHAN VAT " << left << setw(16) << nv.getTen() << "       BOSS THU LINH       |\n";
+    cout << "|           " << left << setw(16) << nv.getTen() << "                GENGAR             |\n";
     cout << "|             O                           .-====-.             |\n";
     cout << "|            /|\\                         /  X  X  \\            |\n";
     cout << "|            / \\                         |   __   |            |\n";
@@ -58,18 +58,41 @@ void khungDauTruong(const NhanVat &nv, int bossHP, int bossMax)
     cout << "+--------------------------------------------------------------+\n";
 }
 
+void dongKe(char kiTu,string text, int size_){
+    int left = (size_ - text.length())/2;
+    for(int i = 0; i<left; i++)
+        cout<<kiTu;
+    cout<<text; 
+    for(int i = left + text.length(); i<size_; i++)
+        cout<<kiTu; 
+    cout<<endl;
+}
+
 void menu()
 {
+    mauChu(10); 
     cout << "\n+---------------------- MENU ----------------------+\n";
     cout << "| 1. Chon sung Eclipse                             |\n";
     cout << "| 2. Chon kiem Phan Quang                          |\n";
     cout << "| 3. Chon phep thuat Loi Quang                     |\n";
-    cout << "| 4. Tan cong Boss                                 |\n";
-    cout << "| 5. Nap dan                                       |\n";
-    cout << "| 6. Xem trang thai va thong tin vu khi            |\n";
-    cout << "| 7. Hoi mana                                      |\n";
-    cout << "| 8. Choi lai                                      |\n";
-    cout << "| 0. Thoat                                         |\n";
+    cout << "| 4. Tan cong Boss trong t giay                    |\n";
+    cout << "| 5. Tan cong Boss                                 |\n";
+    cout << "| 6. Nap dan                                       |\n";
+    cout << "| 7. Xem trang thai va thong tin vu khi            |\n";
+    cout << "| 8. Hoi mana                                      |\n";
+
+    cout << "| ";
+    mauChu(4); 
+    cout<<"9. Choi lai                                      ";
+    mauChu(10); 
+    cout<<"|\n";
+    mauChu(10);
+    cout << "| ";
+    mauChu(4);
+    cout<<"0. Thoat                                         ";
+    mauChu(10);
+    cout<<"|\n";
+    mauChu(10);
     cout << "+--------------------------------------------------+\n";
 }
 
@@ -79,12 +102,12 @@ int main()
     SetConsoleOutputCP(CP_UTF8);
     SetConsoleCP(CP_UTF8);
 #endif
-    // Thiết lập mặc định thông tin đối tượng
     NhanVat nv("Hac Si", 160);
-    nv.themVuKhi(make_unique<Sung>("Eclipse", 30, 1.0, 5, 2.0));
-    nv.themVuKhi(make_unique<Kiem>("Phan Quang", 20, 1.0, 100));
-    nv.themVuKhi(make_unique<PhepThuat>("Loi Quang", 25, 1.0, "Loi", 30)); // sat thuong 25, mana 30
+    nv.themVuKhi(make_unique<Sung>("Eclipse", 30, 2.0, 5, 2.0));
+    nv.themVuKhi(make_unique<Kiem>("Phan Quang", 20, 0.5, 100, 20));
+    nv.themVuKhi(make_unique<PhepThuat>("Loi Quang", 25, 1.0, "Loi", 30)); 
 
+   
     int bossHP = 160, bossMax = 160, diem = 0, luot = 1, chon = 0;
     bool ketThuc = false;
     string dongNhatKy = "Chao mung den dau truong!";
@@ -93,11 +116,19 @@ int main()
     {
         xoaManHinh();
         mauChu(11);
-        cout << "================ SAT THUONG NHAN VAT ================\n";
+        dongKe('=',"", 125); 
+        cout<<"██████╗  █████╗ ████████╗████████╗██╗     ███████╗    ███████╗██╗███╗   ███╗██╗   ██╗██╗      █████╗ ████████╗ ██████╗ ██████╗"<<endl;
+        cout<<"██╔══██╗██╔══██╗╚══██╔══╝╚══██╔══╝██║     ██╔════╝    ██╔════╝██║████╗ ████║██║   ██║██║     ██╔══██╗╚══██╔══╝██╔═══██╗██╔══██╗"<<endl;
+        cout<<"██████╔╝███████║   ██║      ██║   ██║     █████╗      ███████╗██║██╔████╔██║██║   ██║██║     ███████║   ██║   ██║   ██║██████╔╝"<<endl;
+        cout<<"██╔══██╗██╔══██║   ██║      ██║   ██║     ██╔══╝      ╚════██║██║██║╚██╔╝██║██║   ██║██║     ██╔══██║   ██║   ██║   ██║██╔══██╗"<<endl;
+        cout<<"██████╔╝██║  ██║   ██║      ██║   ███████╗███████╗    ███████║██║██║ ╚═╝ ██║╚██████╔╝███████╗██║  ██║   ██║   ╚██████╔╝██║  ██║"<<endl;
+        cout<<"╚═════╝ ╚═╝  ╚═╝   ╚═╝      ╚═╝   ╚══════╝╚══════╝    ╚══════╝╚═╝╚═╝     ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝"<<endl;
+        dongKe('=',"CODEPATH", 125); 
+
         mauChu(7);
-        cout << "Do an OOP C++ | Console 2D | Color + iomanip\n";
         khungDauTruong(nv, bossHP, bossMax);
 
+        mauChu(6);
         cout << "\nVU KHI CUA BAN:\n";
         for (int i = 0; i < nv.soVuKhi(); ++i)
         {
@@ -109,11 +140,12 @@ int main()
             if (auto *s = dynamic_cast<Sung *>(v))
                 cout << " | dan: " << s->getSoDan() << "/5";
             if (auto *p = dynamic_cast<PhepThuat *>(v))
-                cout << "| Mana cần dùng: 8 | mana: " << p->getManaHienTai() << "/30";
+                cout << " | mana: " << p->getManaHienTai() << "/30";
             if (auto *k = dynamic_cast<Kiem *>(v))
                 cout << " | do ben: " << k->getDoBen() << "/100";
             cout << "\n";
         }
+        mauChu(7); 
         cout << "\nVu khi dang chon: " << (chon >= 0 && chon < nv.soVuKhi() ? nv.getVuKhi(chon)->getTen() : "Chua chon") << "\n";
         cout << "Diem sat thuong: " << diem << " | Luot: " << luot << "\n";
         mauChu(14);
@@ -139,7 +171,7 @@ int main()
 
         if (luaChon == 0)
             break;
-        if (luaChon == 8)
+        if (luaChon == 9)
         {
             bossHP = bossMax;
             nv.hoiMau();
@@ -162,7 +194,7 @@ int main()
             dongNhatKy = "Da chon " + nv.getVuKhi(chon)->getTen() + ".";
             continue;
         }
-        if (luaChon == 6)
+        if (luaChon == 7)
         {
             nv.hienThiTrangThai();
             cout << "\nNhan Enter de tiep tuc...";
@@ -170,7 +202,7 @@ int main()
             cin.get();
             continue;
         }
-        if (luaChon == 5)
+        if (luaChon == 6)
         {
             if (auto *s = dynamic_cast<Sung *>(nv.getVuKhi(0)))
             {
@@ -181,7 +213,7 @@ int main()
                 dongNhatKy = "Khong tim thay sung.";
             continue;
         }
-        if (luaChon == 7)
+        if (luaChon == 8)
         {
             if (auto *p = dynamic_cast<PhepThuat *>(nv.getVuKhi(2)))
             {
@@ -189,17 +221,30 @@ int main()
                 dongNhatKy = "Mana da hoi day.";
             }
             continue;
-        }
-        if (luaChon == 4)
+        } 
+        if (luaChon == 4 || luaChon == 5)
         {
             if (ketThuc)
             {
                 dongNhatKy = "Tran dau da ket thuc. Hay choi lai.";
                 continue;
             }
+
             VuKhi *v = nv.getVuKhi(chon);
             int satThuong = 0;
             bool hopLe = true;
+            int thoiGian = 1; 
+
+            if (luaChon == 4)
+            {
+                cout << "Thoi gian can su dung (giay > 0): ";
+                while (!(cin >> thoiGian) || thoiGian <= 0)
+                {
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    cout << "Loi! Thoi gian phai la so nguyen duong (> 0). Vui long nhap lai: ";
+                }
+            }
             if (auto *s = dynamic_cast<Sung *>(v))
             {
                 if (!s->ConDan())
@@ -207,39 +252,47 @@ int main()
                     dongNhatKy = "Het dan! Hay chon Nap dan.";
                     hopLe = false;
                 }
+                if (s->soDanCanDung(thoiGian) > s->getSoDan()) {
+                    dongNhatKy = "Khong the tan cong, vi khong du dan";
+                    hopLe = false; 
+                }
                 else
                 {
                     s->tanCong();
-                    satThuong = s->satThuong(1);
-                    s->SuDungDan();
+                    satThuong = s->satThuong(thoiGian);
+                    s->SuDungDan(thoiGian);
                 }
             }
             else if (auto *k = dynamic_cast<Kiem *>(v))
             {
+                
                 if (k->getDoBen() < 20)
                 {
                     dongNhatKy = "Kiem khong du do ben de tan cong.";
                     hopLe = false;
                 }
+                if (k->doBenCanDung(thoiGian) > k->getDoBen()) {
+                    dongNhatKy = "Khong the tan cong, vi khong du do ben";
+                    hopLe = false; 
+                }
                 else
                 {
                     k->tanCong();
-                    satThuong = k->satThuong(1);
-                    k->setDoBen(k->getDoBen() - 20);
+                    satThuong = k->satThuong(thoiGian);
+                    k->setDoBen(k->getDoBen() - k->doBenCanDung(thoiGian));
                 }
             }
             else if (auto *p = dynamic_cast<PhepThuat *>(v))
             {
-                if (!p->DuMana(8))
-                {
-                    dongNhatKy = "Khong du mana de su dung phep.";
-                    hopLe = false;
+                if (p->soManaCanDung(thoiGian) > p->getManaHienTai()) {
+                    dongNhatKy = "Khong the tan cong, vi khong du mana";
+                    hopLe = false; 
                 }
                 else
                 {
                     p->tanCong();
-                    satThuong = p->satThuong(1);
-                    p->SuDungMana(8);
+                    satThuong = p->satThuong(thoiGian);
+                    p->SuDungMana(8*thoiGian);
                 }
             }
             if (hopLe)
@@ -268,7 +321,7 @@ int main()
                         phanCong = 20;
                     }
                     nv.nhanSatThuong(phanCong);
-                    dongNhatKy += "Boss phan cong " + to_string(phanCong) + " sat thuong.";
+                    dongNhatKy += " Boss phan cong " + to_string(phanCong) + " sat thuong.";
                     if (nv.getMau() == 0)
                     {
                         ketThuc = true;
@@ -280,6 +333,7 @@ int main()
             continue;
         }
         dongNhatKy = "Lua chon khong hop le.";
+
     }
     mauChu(7);
     cout << "Cam on ban da choi!\n";

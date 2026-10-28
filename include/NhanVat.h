@@ -16,7 +16,8 @@ class NhanVat {
         //Constructor
         NhanVat();
         NhanVat(const std::string& tenNhanVat,int mau);
-
+        NhanVat(const NhanVat& other); 
+        
         //Getter, setter
         std::string getTen() const;
         int getMau() const;

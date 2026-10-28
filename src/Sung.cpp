@@ -12,6 +12,11 @@ Sung::Sung(const std::string& tenVuKhi, int satThuong, double tocDo, int soDan, 
     soDan_(soDan),
     tocDoThayBang_(tocDoThayBang) {}
 
+Sung::Sung(const Sung& other): VuKhi(other.tenVuKhi_, other.satThuong_, other.tocDo_) {
+    soDan_ = other.soDan_; 
+    tocDoThayBang_ = other.tocDoThayBang_; 
+}
+
 int Sung::getSoDan() const {
     return soDan_;
 }
@@ -50,16 +55,22 @@ void Sung::NapDan() {
     soDan_ = 5;
 }
 
+int Sung::soDanCanDung(int t) const {
+    return (t*tocDo_);
+}
+
 bool Sung::ConDan() const {
     return soDan_ > 0;
 }
 
-void Sung::SuDungDan() {
-    if(soDan_ > 0) --soDan_;
+void Sung::SuDungDan(int t) {
+    if(soDan_ > 0) 
+        soDan_ = soDan_ - soDanCanDung(t);
 }
 
 void Sung::xuat(std::ostream& os) const {
-    VuKhi::xuat(os);os<<"Loai: Sung\nDan trong ong: "<<soDan_<<"\nThoi gian thay bang: "<<tocDoThayBang_<<" giay\n";
+    VuKhi::xuat(os);
+    os<<"Loai: Sung\nDan trong ong: "<<soDan_<<"\nThoi gian thay bang: "<<tocDoThayBang_<<" giay\n";
 }
 
 void Sung::nhap(std::istream& is) {

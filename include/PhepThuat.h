@@ -10,7 +10,7 @@ class PhepThuat : public VuKhi {
         //Constructor
         PhepThuat();
         PhepThuat(const std::string& tenVuKhi, int satThuong, double tocDo, const std::string& loaiPhep, int manaHienTai);
-
+        PhepThuat(const PhepThuat& other); 
         //Getter, setter
         std::string getLoaiPhep() const;
         int getManaTieuThu() const;
@@ -25,7 +25,8 @@ class PhepThuat : public VuKhi {
         bool DuMana(int manaTieuThu) const;
         void SuDungMana(int manaSuDung);
         void HoiMana();
-
+        int soManaCanDung(int t) const;
+        
         //Qua tai nhap xuat
         void xuat(std::ostream& os) const override;
         void nhap(std::istream& is) override;

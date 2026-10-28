@@ -5,12 +5,29 @@ Kiem::Kiem():
     VuKhi("Kiem mac dinh", 18, 1.0),
     doBen_(100) {}
 
-Kiem::Kiem(const std::string& tenVuKhi, int satThuong, double tocDo, int doBen):
+Kiem::Kiem(const std::string& tenVuKhi, int satThuong, double tocDo, int doBen, int doBenTieuThu):
     VuKhi(tenVuKhi, satThuong, tocDo),
-    doBen_(doBen) {}
+    doBen_(doBen),
+    doBenTieuThu_(doBenTieuThu) {}
+
+Kiem::Kiem(const Kiem& other) {
+    tenVuKhi_ = other.tenVuKhi_; 
+    satThuong_ = other.satThuong_; 
+    tocDo_ = other.tocDo_;
+    doBen_ = other.doBen_; 
+    doBenTieuThu_ = other.doBenTieuThu_; 
+}
 
 int Kiem::getDoBen() const {
     return doBen_;
+}
+
+int Kiem::getDoBenTieuThu() const {
+    return doBenTieuThu_; 
+}
+
+int Kiem::doBenCanDung(int t) const {
+    return (t*tocDo_*doBenTieuThu_);
 }
 
 void Kiem::setDoBen(int newDoBen) {

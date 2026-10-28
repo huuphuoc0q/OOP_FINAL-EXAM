@@ -6,7 +6,7 @@ cd /d "%~dp0"
 
 if errorlevel 1 (
     echo.
-    echo BIEN DICH THAT BAI. Hay chup anh loi gui lai.
+    echo BIEN DICH THAT BAI.
     pause
     exit /b 1
 )

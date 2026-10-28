@@ -4,7 +4,7 @@
 PhepThuat::PhepThuat(): 
     VuKhi("Phep mac dinh",25,1.0),
     loaiPhep_("Loi"),
-    manaTieuThu_(5),
+    manaTieuThu_(8),
     manaHienTai_(30) {}
 
 PhepThuat::PhepThuat(
@@ -18,6 +18,13 @@ PhepThuat::PhepThuat(
     loaiPhep_(loaiPhep),
     manaTieuThu_(8),
     manaHienTai_(manaHienTai) {}
+
+PhepThuat::PhepThuat(const PhepThuat& other): VuKhi(other.tenVuKhi_, other.satThuong_, other.tocDo_){
+    loaiPhep_ = other.loaiPhep_; 
+    manaTieuThu_ = other.manaTieuThu_; 
+    manaHienTai_ = other.manaHienTai_; 
+}
+
 
 std::string PhepThuat::getLoaiPhep() const {
     return loaiPhep_;
@@ -63,6 +70,10 @@ void PhepThuat::SuDungMana(int manaSuDung) {
     if( manaSuDung>0 && manaHienTai_ >= manaSuDung){
         manaHienTai_ -= manaSuDung;
     }
+}
+
+int PhepThuat::soManaCanDung(int t) const {
+    return (t*tocDo_*manaTieuThu_);
 }
 
 void PhepThuat::HoiMana() {

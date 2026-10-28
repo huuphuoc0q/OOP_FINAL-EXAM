@@ -11,6 +11,12 @@ NhanVat::NhanVat(const std::string& tenNhanVat,int mau):
     mau_(std::max(0, mau)),
     mauToiDa_(std::max(1, mau)) {}
 
+NhanVat::NhanVat(const NhanVat& other){
+    tenNhanVat_ = other.tenNhanVat_;
+    mau_ = other.mau_;
+    mauToiDa_ = other.mauToiDa_; 
+}
+
 std::string NhanVat::getTen() const {
     return tenNhanVat_;
 }
@@ -37,7 +43,7 @@ void NhanVat::themVuKhi(std::unique_ptr<VuKhi>  vuKhi) {
 }
 
 VuKhi* NhanVat::getVuKhi(int index) {
-    return (index >= 0 && index < (int)(danhSachVuKhi_.size())) // ép kiểu size về int vì size trả về số nguyên không dấu (tránh trường so sánh 2 số nguyên có dấu và không dấu)
+    return (index >= 0 && index < (danhSachVuKhi_.size())) // ép kiểu size về int vì size trả về số nguyên không dấu (tránh trường so sánh 2 số nguyên có dấu và không dấu)
            ? danhSachVuKhi_[index].get() 
            : nullptr;
 }

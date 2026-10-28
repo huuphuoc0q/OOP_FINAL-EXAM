@@ -1,7 +1,9 @@
 #ifndef VUKHI_H
 #define VUKHI_H
 #include <iostream>
-#include <string>
+#include <string> 
+//Lớp vũ khí là lớp trừu tượng vì có sử dụng hàm thuần ảo
+// Có bắt buộc phải có hàm huỷ trong đồ án không 
 
 class VuKhi {
     protected:
@@ -11,6 +13,8 @@ class VuKhi {
     public:
         VuKhi();
         VuKhi(const std::string& tenVuKhi, int satThuong, double tocDo);
+        VuKhi(const VuKhi& other); 
+        
         virtual ~VuKhi() = default;
 
         std::string getTen() const;

@@ -25,15 +25,18 @@ g++ -std=c++17 -Iinclude src/*.cpp -o SatThuongNhanVat
 ```
 
 ## Điều khiển
-1/2/3: chọn vũ khí; 4: tấn công; 5: nạp đạn; 6: xem trạng thái; 7: hồi mana; 8: chơi lại; 0: thoát.
+Nhấn phím trực tiếp, không cần Enter: 1/2/3 chọn vũ khí; 4 hoặc Space tấn công; 5 bắt đầu thay băng; 6 xem trạng thái; 7 hồi mana; 8 chơi lại; 0 hoặc Esc thoát.
 
 ## Quy luật chiến đấu
 - Nhân vật có 160 HP, Boss có 160 HP.
 - Mỗi lượt đánh, vũ khí gây sát thương theo `SatThuong(1)`; Boss còn sống sẽ phản công 35HP khi dùng súng, 15 khi dùng kiếm, 20 khi dùng phép.
 - Súng dùng một viên đạn/lượt; kiếm giảm độ bền 20 mỗi lần đánh; phép thuật tiêu hao mana theo số giây tấn công.
+- Sau mỗi đòn đánh thành công, súng hồi chiêu 1 giây, kiếm 2 giây và phép thuật 4 giây. Mỗi vũ khí có thời gian hồi chiêu riêng.
+- Thay băng mất thời gian theo `Sung::getTocDoThayBang()` (mặc định 2 giây). Trong lúc thay băng không thể bắn; thời gian hồi chiêu và thay băng vẫn chạy khi người chơi không nhấn phím.
 - Chơi lại phục hồi HP, đạn, mana và độ bền.
-- Đây là mô phỏng theo lượt trong Console; `t` trong `SatThuong(int t)` được hiểu là số giây sử dụng vũ khí.
+- Boss chỉ phản công sau đòn đánh thành công; thay băng và chờ hồi chiêu không khiến Boss tấn công.
 
 ## Lưu ý
 - Màu console dùng Windows Console API trên Windows; trên Linux/macOS mã màu chưa được triển khai (các lệnh game vẫn chạy).
+- Cần chạy trong terminal tương tác để chương trình đọc phím trực tiếp.
 - Nếu terminal không hỗ trợ UTF-8 hoặc các ký tự khung, dùng terminal hỗ trợ Unicode. Nội dung mặc định không dấu để tránh lỗi font.
