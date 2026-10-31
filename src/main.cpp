@@ -70,7 +70,7 @@ void dongKe(char kiTu,string text, int size_){
 
 void menu()
 {
-    mauChu(10); 
+    mauChu(3); 
     cout << "\n+---------------------- MENU ----------------------+\n";
     cout << "| 1. Chon sung Eclipse                             |\n";
     cout << "| 2. Chon kiem Phan Quang                          |\n";
@@ -84,15 +84,15 @@ void menu()
     cout << "| ";
     mauChu(4); 
     cout<<"9. Choi lai                                      ";
-    mauChu(10); 
+    mauChu(3); 
     cout<<"|\n";
-    mauChu(10);
+    mauChu(3);
     cout << "| ";
     mauChu(4);
     cout<<"0. Thoat                                         ";
-    mauChu(10);
+    mauChu(3);
     cout<<"|\n";
-    mauChu(10);
+    mauChu(3);
     cout << "+--------------------------------------------------+\n";
 }
 
