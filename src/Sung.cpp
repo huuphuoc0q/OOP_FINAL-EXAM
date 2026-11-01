@@ -51,7 +51,7 @@ std::string Sung::getLoai() const {
     return "Sung";
 }
 
-void Sung::NapDan() {
+void Sung::napDan() {
     soDan_ = 5;
 }
 
@@ -59,11 +59,11 @@ int Sung::soDanCanDung(int t) const {
     return (t*tocDo_);
 }
 
-bool Sung::ConDan() const {
+bool Sung::conDan() const {
     return soDan_ > 0;
 }
 
-void Sung::SuDungDan(int t) {
+void Sung::suDungDan(int t) {
     if(soDan_ > 0) 
         soDan_ = soDan_ - soDanCanDung(t);
 }

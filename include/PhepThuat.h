@@ -22,9 +22,9 @@ class PhepThuat : public VuKhi {
         void tanCong() override;
         int satThuong(int t) const override;
         std::string getLoai() const override;
-        bool DuMana(int manaTieuThu) const;
-        void SuDungMana(int manaSuDung);
-        void HoiMana();
+        bool duMana(int manaTieuThu) const;
+        void suDungMana(int manaSuDung);
+        void hoiMana();
         int soManaCanDung(int t) const;
         
         //Qua tai nhap xuat

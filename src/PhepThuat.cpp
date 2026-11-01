@@ -62,11 +62,11 @@ std::string PhepThuat::getLoai() const {
     return "Phep thuat";
 }
 
-bool PhepThuat::DuMana(int manaTieuThu) const {
+bool PhepThuat::duMana(int manaTieuThu) const {
     return manaHienTai_ >= manaTieuThu;
 }
 
-void PhepThuat::SuDungMana(int manaSuDung) {
+void PhepThuat::suDungMana(int manaSuDung) {
     if( manaSuDung>0 && manaHienTai_ >= manaSuDung){
         manaHienTai_ -= manaSuDung;
     }
@@ -76,7 +76,7 @@ int PhepThuat::soManaCanDung(int t) const {
     return (t*tocDo_*manaTieuThu_);
 }
 
-void PhepThuat::HoiMana() {
+void PhepThuat::hoiMana() {
     manaHienTai_ = 30;
 }
 

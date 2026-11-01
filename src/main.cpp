@@ -2,33 +2,36 @@
 #include <iomanip>
 #include <memory>
 #include <limits>
+#include <sstream>
 #include <string>
 #include "NhanVat.h"
 #include "Sung.h"
 #include "Kiem.h"
 #include "PhepThuat.h"
+using namespace std;
+
 #ifdef _WIN32
 #include <windows.h>
 #endif
 
 using namespace std;
 
-void mauChu(int mau)
-{
-#ifdef _WIN32
-    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), mau);
-#else
-    (void)mau;
-#endif
+void mauChu(int mau){
+    #ifdef _WIN32
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), mau);
+    #else
+        (void)mau;
+    #endif
 }
-void xoaManHinh()
-{
-#ifdef _WIN32
-    system("cls");
-#else
-    system("clear");
-#endif
+
+void xoaManHinh(){
+    #ifdef _WIN32
+        system("cls");
+    #else
+        system("clear");
+    #endif
 }
+
 void thanhMau(const string &ten, int hp, int maxHP, int rong = 24)
 {
     int day = maxHP > 0 ? hp * rong / maxHP : 0;
@@ -103,8 +106,8 @@ int main()
     SetConsoleCP(CP_UTF8);
 #endif
     NhanVat nv("Hac Si", 160);
-    nv.themVuKhi(make_unique<Sung>("Eclipse", 30, 2.0, 5, 2.0));
-    nv.themVuKhi(make_unique<Kiem>("Phan Quang", 20, 0.5, 100, 20));
+    nv.themVuKhi(make_unique<Sung>("Eclipse", 15, 2.0, 5, 2.0));
+    nv.themVuKhi(make_unique<Kiem>("Phan Quang", 20, 1.0, 100, 20));
     nv.themVuKhi(make_unique<PhepThuat>("Loi Quang", 25, 1.0, "Loi", 30)); 
 
    
@@ -180,9 +183,9 @@ int main()
             chon = 0;
             ketThuc = false;
             if (auto *s = dynamic_cast<Sung *>(nv.getVuKhi(0)))
-                s->NapDan();
+                s->napDan();
             if (auto *p = dynamic_cast<PhepThuat *>(nv.getVuKhi(2)))
-                p->HoiMana();
+                p->hoiMana();
             if (auto *k = dynamic_cast<Kiem *>(nv.getVuKhi(1)))
                 k->setDoBen(100);
             dongNhatKy = "Tran dau da duoc dat lai.";
@@ -206,7 +209,7 @@ int main()
         {
             if (auto *s = dynamic_cast<Sung *>(nv.getVuKhi(0)))
             {
-                s->NapDan();
+                s->napDan();
                 dongNhatKy = "Sung Eclipse da nap day dan.";
             }
             else
@@ -217,7 +220,7 @@ int main()
         {
             if (auto *p = dynamic_cast<PhepThuat *>(nv.getVuKhi(2)))
             {
-                p->HoiMana();
+                p->hoiMana();
                 dongNhatKy = "Mana da hoi day.";
             }
             continue;
@@ -237,17 +240,12 @@ int main()
 
             if (luaChon == 4)
             {
-                cout << "Thoi gian can su dung (giay > 0): ";
-                while (!(cin >> thoiGian) || thoiGian <= 0)
-                {
-                    cin.clear();
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                    cout << "Loi! Thoi gian phai la so nguyen duong (> 0). Vui long nhap lai: ";
-                }
+                cout<<"Nhap thoi gian danh boss trong vong t giay: ";
+                cin>>thoiGian; 
             }
             if (auto *s = dynamic_cast<Sung *>(v))
             {
-                if (!s->ConDan())
+                if (!s->conDan())
                 {
                     dongNhatKy = "Het dan! Hay chon Nap dan.";
                     hopLe = false;
@@ -259,8 +257,9 @@ int main()
                 else
                 {
                     s->tanCong();
+                    Sleep(2000); 
                     satThuong = s->satThuong(thoiGian);
-                    s->SuDungDan(thoiGian);
+                    s->suDungDan(thoiGian);
                 }
             }
             else if (auto *k = dynamic_cast<Kiem *>(v))
@@ -278,6 +277,7 @@ int main()
                 else
                 {
                     k->tanCong();
+                    Sleep(2000); 
                     satThuong = k->satThuong(thoiGian);
                     k->setDoBen(k->getDoBen() - k->doBenCanDung(thoiGian));
                 }
@@ -291,8 +291,9 @@ int main()
                 else
                 {
                     p->tanCong();
+                    Sleep(2000); j
                     satThuong = p->satThuong(thoiGian);
-                    p->SuDungMana(8*thoiGian);
+                    p->suDungMana(8*thoiGian);
                 }
             }
             if (hopLe)
@@ -310,15 +311,15 @@ int main()
                     int phanCong = 0;
                     if (dynamic_cast<Sung *>(v) != nullptr)
                     {
-                        phanCong = 35;
+                        phanCong = 35*(thoiGian*v->getTocDoRaDon());
                     }
                     else if (dynamic_cast<Kiem *>(v) != nullptr)
                     {
-                        phanCong = 15;
+                        phanCong = 15*(thoiGian*v->getTocDoRaDon());
                     }
                     else if (dynamic_cast<PhepThuat *>(v) != nullptr)
                     {
-                        phanCong = 20;
+                        phanCong = 20*(thoiGian*v->getTocDoRaDon());
                     }
                     nv.nhanSatThuong(phanCong);
                     dongNhatKy += " Boss phan cong " + to_string(phanCong) + " sat thuong.";
@@ -333,7 +334,6 @@ int main()
             continue;
         }
         dongNhatKy = "Lua chon khong hop le.";
-
     }
     mauChu(7);
     cout << "Cam on ban da choi!\n";
