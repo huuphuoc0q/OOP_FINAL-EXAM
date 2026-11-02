@@ -291,7 +291,7 @@ int main()
                 else
                 {
                     p->tanCong();
-                    Sleep(2000); j
+                    Sleep(2000);
                     satThuong = p->satThuong(thoiGian);
                     p->suDungMana(8*thoiGian);
                 }
