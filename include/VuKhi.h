@@ -30,7 +30,5 @@ class VuKhi {
 
         virtual void xuat(std::ostream& os) const;
         virtual void nhap(std::istream& is);
-        friend std::ostream& operator<<(std::ostream& os, const VuKhi& vuKhi);
-        friend std::istream& operator>>(std::istream& is, VuKhi& vuKhi);
 };
 #endif
