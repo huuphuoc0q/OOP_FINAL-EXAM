@@ -42,8 +42,8 @@ void Sung::tanCong() {
 int Sung::satThuong(int t) const {
     if( t<0 || soDan_ <= 0)
         return 0; 
-    int soPhat = static_cast<int>(t*tocDo_); 
-    if( soPhat > soDan_) soPhat= soDan_;
+    int soPhat = static_cast<int>((t*1.0)/tocDo_); 
+    if( soPhat > soDan_) soPhat = soDan_;
     return soPhat*satThuong_;
 }
 
@@ -56,7 +56,7 @@ void Sung::napDan() {
 }
 
 int Sung::soDanCanDung(int t) const {
-    return (t*tocDo_);
+    return static_cast<int>((t*1.0)/tocDo_);
 }
 
 bool Sung::conDan() const {

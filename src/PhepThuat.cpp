@@ -55,7 +55,8 @@ void PhepThuat::tanCong() {
 int PhepThuat::satThuong(int t) const { 
     if(t<0 || manaHienTai_ < manaTieuThu_*t )
         return 0;
-    return static_cast<int>(t*tocDo_)*satThuong_;
+    int soPhat = static_cast<int>((t*1.0)/tocDo_); 
+    return soPhat*satThuong_;
 }
 
 std::string PhepThuat::getLoai() const {
@@ -73,7 +74,8 @@ void PhepThuat::suDungMana(int manaSuDung) {
 }
 
 int PhepThuat::soManaCanDung(int t) const {
-    return (t*tocDo_*manaTieuThu_);
+    int soPhat = static_cast<int> ((t*1.0)/tocDo_); 
+    return (soPhat*manaTieuThu_);
 }
 
 void PhepThuat::hoiMana() {

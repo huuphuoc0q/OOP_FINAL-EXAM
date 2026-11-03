@@ -27,7 +27,8 @@ int Kiem::getDoBenTieuThu() const {
 }
 
 int Kiem::doBenCanDung(int t) const {
-    return (t*tocDo_*doBenTieuThu_);
+    int soNhat = static_cast<int>((t*1.0)/tocDo_); 
+    return (soNhat*doBenTieuThu_);
 }
 
 void Kiem::setDoBen(int newDoBen) {
@@ -42,7 +43,7 @@ void Kiem::tanCong() {
 int Kiem::satThuong(int t) const {
     if( t<0 || doBen_ <= 0)
         return 0;
-    int soNhat = static_cast<int>(t*tocDo_);
+    int soNhat = static_cast<int>((t*1.0)/tocDo_); 
     return soNhat*satThuong_;
 }
 
