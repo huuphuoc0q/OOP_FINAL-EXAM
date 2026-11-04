@@ -145,7 +145,6 @@ string canGiua(const string &noiDung, int chieuRong)
            string(chieuRong - benTrai - rongNoiDung, ' ');
 }
 
-
 string thanhMau(const string &ten, int hp, int maxHP, int rong = 20)
 {
     int day = 0;
@@ -156,13 +155,14 @@ string thanhMau(const string &ten, int hp, int maxHP, int rong = 20)
     string tenHienThi = catTheoDoRong(ten, 15);
     tenHienThi += string(15 - doRongHienThi(tenHienThi), ' ');
 
-    int doDaiThuc = 15 + 1 + rong + 2 
-                  + static_cast<int>(to_string(hp).length()) + 1 
-                  + static_cast<int>(to_string(maxHP).length());
+    string strHP = string(max(0, 3 - static_cast<int>(to_string(hp).length())), ' ') + to_string(hp);
+    string strMaxHP = string(max(0, 3 - static_cast<int>(to_string(maxHP).length())), ' ') + to_string(maxHP);
+
+    int doDaiThuc = 45;
 
     int khungRong = CHIEU_RONG_DAU_TRUONG / 2; 
-    int lechTrai = max(0, (khungRong - doDaiThuc) / 2);
-    int lechPhai = max(0, khungRong - doDaiThuc - lechTrai);
+    int lechTrai = (khungRong - doDaiThuc) / 2; 
+    int lechPhai = khungRong - doDaiThuc - lechTrai; 
     
     int marginTrai = max(0, (CHIEU_RONG_DAU_TRUONG - (khungRong + 4)) / 2); 
 
@@ -170,7 +170,7 @@ string thanhMau(const string &ten, int hp, int maxHP, int rong = 20)
                    + "\033[97m" + tenHienThi + "["
                    + "\033[92m" + string(day, '#')
                    + "\033[90m" + string(rong - day, '-')
-                   + "\033[97m] " + to_string(hp) + "/" + to_string(maxHP)
+                   + "\033[97m] " + strHP + "/" + strMaxHP
                    + string(lechPhai, ' ');
 
     string ketQua = string(marginTrai, ' ')
@@ -232,16 +232,25 @@ void inLine(std::string kiTu, int size_, std::string backGround, std::string tex
 }
 void printTitle(std::string title, string color_Khung){
     cout<<string(33, ' '); 
-    inLine("=", CHIEU_RONG_DAU_TRUONG/2 + 3, color_Khung, "", "center", 14); std::cout<<std::endl;
+    cout<<color_Khung;
+    cout<<"++";
+    inLine("=", CHIEU_RONG_DAU_TRUONG/2 - 1, color_Khung, "", "center", 14);
+    cout<<color_Khung; 
+    cout<<"++";
+    std::cout<<std::endl;
     cout<<color_Khung; 
     cout<<string(33, ' ');
-    std::cout<<"|";
-    inLine(" ", CHIEU_RONG_DAU_TRUONG/2 + 1, color_Khung, title,"center", 14); 
+    std::cout<<"||";
+    inLine(" ", CHIEU_RONG_DAU_TRUONG/2 - 1, color_Khung, title,"center", 14); 
     cout<<color_Khung;
-    std::cout<<"|";
+    std::cout<<"||";
     std::cout<<std::endl;
     cout<<string(33, ' ');
-    inLine("=", CHIEU_RONG_DAU_TRUONG/2 + 3, color_Khung, ""); std::cout<<std::endl;
+    cout<<"++";
+    inLine("=", CHIEU_RONG_DAU_TRUONG/2 - 1, color_Khung, ""); 
+    cout<<color_Khung; 
+    cout<<"++";
+    std::cout<<std::endl;
     cout<<MAU_RESET;
 } 
 
@@ -252,7 +261,7 @@ void printOption(std::string title, std::vector<std::string>& option, string col
         std::cout<<color_Khung;
         cout<<string(33, ' ');
         int tmp = i; if (tmp==(option.size() - 1)) tmp = -1;
-        std::cout<<"|";
+        std::cout<<"||";
         switch(i) {
             case 0:
                 color_Opt = MAU_SUNG; 
@@ -273,9 +282,9 @@ void printOption(std::string title, std::vector<std::string>& option, string col
                 color_Opt = tmp_color;
                 break;
         }
-        inLine(" ", CHIEU_RONG_DAU_TRUONG/2 + 1, color_Opt, std::to_string(tmp + 1) + ". " + option[i], "left"); 
+        inLine(" ", CHIEU_RONG_DAU_TRUONG/2 - 1, color_Opt, std::to_string(tmp + 1) + ". " + option[i], "left"); 
         cout<<color_Khung;
-        std::cout<<"|"<<"\n";
+        std::cout<<"||"<<"\n";
     } 
     cout<<string(33, ' ');
     inLine("=", CHIEU_RONG_DAU_TRUONG/2 + 3, color_Khung, "");
@@ -421,7 +430,6 @@ int main()
         printHeader(); cout<<endl;
         khungDauTruong(nv, bossHP, bossMax);
         printKhoVuKhi(nv);
-        // printInfo(nv);
         printNhatKy(chon, nv, diem, luot, dongNhatKy, ketThuc, bossHP); 
         menu();
         
