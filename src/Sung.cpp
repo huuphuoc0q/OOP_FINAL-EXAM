@@ -36,6 +36,7 @@ void Sung::setTocDoThayBang(double newTocDoThayBang) {
 }
 
 void Sung::tanCong() {
+    std::cout<<std::string(33, ' '); 
     std::cout<<" * BANG! Sung "<<tenVuKhi_<<" khai hoa.\n";
 }
 

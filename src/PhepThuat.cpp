@@ -49,6 +49,7 @@ void PhepThuat::setManaTieuThu(int newManaTieuThu) {
 }
 
 void PhepThuat::tanCong() {
+    std::cout<<std::string(33, ' '); 
     std::cout<<" * VUUT! Phep "<<loaiPhep_<<" bung no.\n";
 }
 

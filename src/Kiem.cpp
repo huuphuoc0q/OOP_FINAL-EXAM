@@ -37,6 +37,7 @@ void Kiem::setDoBen(int newDoBen) {
 }
 
 void Kiem::tanCong() {
+    std::cout<<std::string(33, ' '); 
     std::cout<<" * XEO! Kiem "<<tenVuKhi_<<" chem mot nhat.\n";
 }
 

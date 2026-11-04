@@ -61,7 +61,11 @@ void NhanVat::hoiMau() {
 }
 
 void NhanVat::hienThiTrangThai() const {
+    std::cout<<std::string(33, ' '); 
     std::cout<<"Nhan vat: "<<tenNhanVat_<<" | HP: "<<mau_<<"/"<<mauToiDa_<<"\n";
-    for(size_t i=0;i<danhSachVuKhi_.size();++i)
+    for(size_t i=0;i<danhSachVuKhi_.size();++i) {
+        std::cout<<std::string(33, ' '); 
         std::cout<<i+1<<". "<<danhSachVuKhi_[i]->getTen()<<" ["<<danhSachVuKhi_[i]->getLoai()<<"] - sat thuong "<<danhSachVuKhi_[i]->getSatThuongCoBan()<<"\n";
+    }
+    std::cout<<"\n";
 }

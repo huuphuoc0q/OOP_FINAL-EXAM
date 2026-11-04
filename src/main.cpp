@@ -401,7 +401,10 @@ void printNhatKy(int chon, NhanVat& nv, int diem, int luot, string dongNhatKy, b
     if (ketThuc)
     {
         mauChu(bossHP == 0 ? 10 : 12);
-        cout << MAU_WIN << (bossHP == 0 ? "*** CHIEN THANG! BOSS DA BI HA GUC ***" : "*** THAT BAI! NHAN VAT DA HET MAU ***") << "\n";
+        cout<<string(33, ' '); 
+        if (bossHP == 0)
+            cout << MAU_WIN <<"*** CHIEN THANG! BOSS DA BI HA GUC ***"<<"\n";
+        else cout<<MAU_TENBOSS<< "*** THAT BAI! NHAN VAT DA HET MAU ***" << "\n";
         mauChu(7);
     }
     cout<<MAU_RESET; 
@@ -471,7 +474,8 @@ int main()
         if (luaChon == 7)
         {
             nv.hienThiTrangThai();
-            cout << "\nNhan Enter de tiep tuc...";
+            cout<<string(33, ' '); 
+            cout << "\033[1;96mNhan Enter de tiep tuc...";
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             cin.get();
             continue;
@@ -511,7 +515,9 @@ int main()
 
             if (luaChon == 4)
             {
-                cout<<"Nhap thoi gian danh boss trong vong t giay: ";
+                cout<<string(33, ' '); 
+                
+                cout << "\033[1;96m"<<"Nhap thoi gian danh boss trong vong t giay: " <<MAU_RESET;
                 cin>>thoiGian; 
             }
             if (auto *s = dynamic_cast<Sung *>(v))
@@ -607,8 +613,9 @@ int main()
         dongNhatKy = "Lua chon khong hop le.";
     }
     mauChu(7);
+    cout<<string(33, ' '); 
     cout << "Cam on ban da choi!\n";
-    return 0;
+    return 0; 
 }
 
 
