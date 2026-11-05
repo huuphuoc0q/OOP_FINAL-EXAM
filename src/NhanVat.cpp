@@ -43,7 +43,7 @@ void NhanVat::themVuKhi(std::unique_ptr<VuKhi>  vuKhi) {
 }
 
 VuKhi* NhanVat::getVuKhi(int index) {
-    return (index >= 0 && index < (danhSachVuKhi_.size())) // ép kiểu size về int vì size trả về số nguyên không dấu (tránh trường so sánh 2 số nguyên có dấu và không dấu)
+    return (index >= 0 && index < (danhSachVuKhi_.size())) 
            ? danhSachVuKhi_[index].get() 
            : nullptr;
 }
