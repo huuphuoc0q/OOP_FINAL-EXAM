@@ -1,14 +1,10 @@
 #include "VuKhi.h"
 #include <limits>
-VuKhi::VuKhi() : 
-    tenVuKhi_(""), 
-    satThuong_(0), //Mac dinh sat thuong = 0 vì chưa có đối tượng vũ khí
-    tocDo_(0) {} //Mac định tốc độ hồi chiêu = 0
+VuKhi::VuKhi() 
+    : tenVuKhi_(""), satThuong_(0), tocDo_(0) {} 
 
-VuKhi::VuKhi(const std::string& tenVuKhi, int satThuong, double tocDo) : 
-    tenVuKhi_(tenVuKhi), 
-    satThuong_(satThuong), 
-    tocDo_(tocDo) {}
+VuKhi::VuKhi(const std::string& tenVuKhi, int satThuong, double tocDo) 
+    : tenVuKhi_(tenVuKhi), satThuong_(satThuong), tocDo_(tocDo) {}
 
 std::string VuKhi::getTen() const { 
     return tenVuKhi_; 
@@ -55,7 +51,6 @@ void VuKhi::nhap(std::istream& is) {
     else { 
         is.clear(); // Đặt luồng nhập về bình thường khi người dùng nhập saikiểu dữ liệu
         is.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); 
-        //Dọn bộ đệm đã nhập sai
     }
 }
 
