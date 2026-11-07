@@ -618,5 +618,3 @@ int main()
     return 0; 
 }
 
-
-//Tốc độ ra đòn phải là giây / đòn 
